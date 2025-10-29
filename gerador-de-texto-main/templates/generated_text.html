@@ -1,52 +1,46 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <title>Texto Gerado - {{ text_name }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Texto Gerado para: {{ text_name }}</h1>
-        <div class="generated-output">
-            <pre id="output-text">{{ generated_content }}</pre>
-            <button class="button copy-button" onclick="copyText()">Copiar</button>
-        </div>
-        <a href="{{ url_for('index') }}" class="button back-button">Voltar para a Lista</a>
+{% extends "base.html" %}
+
+{% block title %}Texto Gerado - {{ text_name }}{% endblock %}
+
+{% block content %}
+    <h1>Texto Gerado para: {{ text_name }}</h1>
+    <div class="generated-output">
+        <pre id="output-text">{{ generated_content }}</pre>
+        <button class="button copy-button" onclick="copyText()">Copiar</button>
     </div>
+    <a href="{{ url_for('index') }}" class="button back-button">Voltar para a Lista</a>
+{% endblock %}
 
-    <script>
-        function copyText() {
-            const textElement = document.getElementById('output-text');
-            const textToCopy = textElement.innerText;
+{% block scripts %}
+<script>
+    function copyText() {
+        const textElement = document.getElementById('output-text');
+        const textToCopy = textElement.innerText;
 
-            if (navigator.clipboard && window.isSecureContext) {
-                // API moderna e segura
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    alert('Texto copiado para a área de transferência!');
-                }).catch(err => {
-                    alert('Falha ao copiar o texto.');
-                    console.error('Erro ao copiar com a Clipboard API:', err);
-                });
-            } else {
-                // Fallback para navegadores mais antigos (pode não funcionar em todos os contextos)
-                const textArea = document.createElement("textarea");
-                textArea.value = textToCopy;
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    alert('Texto copiado para a área de transferência!');
-                } catch (err) {
-                    alert('Falha ao copiar o texto.');
-                    console.error('Erro ao copiar com execCommand:', err);
-                }
-                document.body.removeChild(textArea);
+        if (navigator.clipboard && window.isSecureContext) {
+            // API moderna e segura
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Texto copiado para a área de transferência!');
+            }).catch(err => {
+                alert('Falha ao copiar o texto.');
+                console.error('Erro ao copiar com a Clipboard API:', err);
+            });
+        } else {
+            // Fallback para navegadores mais antigos (pode não funcionar em todos os contextos)
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert('Texto copiado para a área de transferência!');
+            } catch (err) {
+                alert('Falha ao copiar o texto.');
+                console.error('Erro ao copiar com execCommand:', err);
             }
+            document.body.removeChild(textArea);
         }
-    </script>
-</body>
-</html>
+    }
+</script>
+{% endblock %}

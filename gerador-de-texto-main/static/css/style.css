@@ -30,6 +30,12 @@ body {
     line-height: 1.6;
 }
 
+.main-content {
+    flex: 1;
+    width: 100%;
+    padding-bottom: 60px; /* Espaço para o rodapé */
+}
+
 .container {
     max-width: 900px;
     margin: 40px auto;
@@ -193,4 +199,35 @@ pre {
     position: absolute;
     top: 15px;
     right: 15px;
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--text-color);
+    color: var(--light-gray-color);
+    padding: 30px 0;
+    margin-top: auto; /* Empurra o footer para o final */
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: var(--white-color);
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
 }

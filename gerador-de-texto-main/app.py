@@ -28,6 +28,11 @@ def init_db():
 
 init_db()
 
+# Injeta variáveis em todos os templates
+@app.context_processor
+def inject_now():
+    return {'now': datetime.utcnow()}
+
 @app.route('/')
 def index():
     conn = get_db_connection()

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>{% block title %}{% endblock %} - Gerador de Layout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="main-content">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>&copy; {{ now.year }} Sua Empresa. Todos os direitos reservados.</p>
+            <nav class="footer-links">
+                <a href="#" target="_blank">Aplicação 1</a>
+                <a href="#" target="_blank">Aplicação 2</a>
+                <a href="#" target="_blank">Contato</a>
+            </nav>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
