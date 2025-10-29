@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <title>Gerar Texto: {{ text.name }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -14,7 +15,7 @@
         <form action="{{ url_for('generate_text', text_id=text.id) }}" method="POST">
             {% for placeholder in placeholders %}
                 <label for="var_{{ placeholder }}">Valor para '{{ placeholder }}':</label>
-                <input type="text" id="var_{{ placeholder }}" name="var_{{ placeholder }}" placeholder="Insira o valor para {{ placeholder }}">
+                <input type="text" id="var_{{ placeholder }}" name="var_{{ placeholder }}" placeholder="Insira o valor para {{ placeholder }}" required>
             {% endfor %}
 
             {% if not placeholders %}

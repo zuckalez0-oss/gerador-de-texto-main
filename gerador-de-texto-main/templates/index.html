@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <title>Gerador de Layout de E-mail</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -18,7 +19,7 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        <a href="{{ url_for('add_text') }}" class="button">Adicionar Novo Texto</a>
+        <a href="{{ url_for('add_text') }}" class="button">Adicionar Novo Layout</a>
         <div class="text-list">
             {% for text in texts %}
                 <div class="text-item">
@@ -27,13 +28,13 @@
                     <div class="actions">
                         <a href="{{ url_for('generate_text', text_id=text.id) }}" class="button">Gerar</a>
                         <a href="{{ url_for('edit_text', text_id=text.id) }}" class="button edit-button">Editar</a>
-                        <form action="{{ url_for('delete_text', text_id=text.id) }}" method="POST" style="display:inline;">
+                        <form class="delete-form" action="{{ url_for('delete_text', text_id=text.id) }}" method="POST">
                             <button type="submit" class="button delete-button" onclick="return confirm('Tem certeza que deseja excluir este texto?');">Excluir</button>
                         </form>
                     </div>
                 </div>
             {% else %}
-                <p>Nenhum texto pré-pronto cadastrado ainda. <a href="{{ url_for('add_text') }}">Adicione um!</a></p>
+                <p style="text-align: center;">Nenhum layout cadastrado ainda. <a href="{{ url_for('add_text') }}">Adicione o primeiro!</a></p>
             {% endfor %}
         </div>
     </div>

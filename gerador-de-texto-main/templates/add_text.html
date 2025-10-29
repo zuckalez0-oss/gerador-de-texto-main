@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <title>Adicionar Novo Texto</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -21,7 +22,7 @@
         <form method="POST">
             <label for="name">Nome do Layout:</label>
             <input type="text" id="name" name="name" required value="{{ request.form['name'] if request.method == 'POST' else '' }}">
-            <label for="content">Conteúdo do Texto (use {saudacao} para saudação automática e `{variavel_qualquer}` para suas variáveis customizadas):</label>
+            <label for="content">Conteúdo do Texto (use <code>{saudacao}</code> e <code>{variavel}</code>):</label>
             <textarea id="content" name="content" rows="10" required>{{ request.form['content'] if request.method == 'POST' else '' }}</textarea>
             <button type="submit" class="button">Salvar Texto</button>
         </form>
